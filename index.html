@@ -3,98 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A premium, mobile-friendly offline tip calculator for quick and easy bill splitting.">
-    <title>QuickTip - Offline Tip Calculator</title>
-    <!-- Preconnect to Google Fonts (optional, fallback is standard sans-serif when offline) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Tip Calculator</title>
+    <!-- We're using local fonts or standard system fonts to ensure it works completely offline, but we'll include a fallback for a modern look -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="app-background-blobs">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-    </div>
-    
-    <main class="app-container">
-        <header class="app-header">
-            <div class="logo-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-            </div>
-            <h1>QuickTip</h1>
-            <p class="subtitle">Diner Breakroom Edition • Works Offline</p>
-        </header>
+    <main class="calculator-container">
+        <div class="calculator-card">
+            <header>
+                <h1>Tip Calculator</h1>
+                <p>Calculate tips easily and offline.</p>
+            </header>
 
-        <section class="calculator-card">
             <form id="tip-form" novalidate>
-                <!-- Bill Amount Input Group -->
                 <div class="input-group">
-                    <label for="bill-amount">Total Bill Amount ($)</label>
+                    <label for="bill-amount">Total Bill Amount</label>
                     <div class="input-wrapper">
-                        <span class="input-prefix">$</span>
-                        <input 
-                            type="number" 
-                            id="bill-amount" 
-                            placeholder="0.00" 
-                            step="0.01" 
-                            min="0.01" 
-                            required
-                        >
+                        <span class="currency-symbol">$</span>
+                        <input type="number" id="bill-amount" placeholder="0.00" step="0.01" min="0" required>
                     </div>
                 </div>
 
-                <!-- Tip Percentage Dropdown Group -->
                 <div class="input-group">
                     <label for="tip-percentage">Tip Percentage</label>
                     <div class="select-wrapper">
                         <select id="tip-percentage" required>
-                            <option value="10">10% (Standard)</option>
-                            <option value="15" selected>15% (Good Service)</option>
-                            <option value="18">18% (Great Service)</option>
-                            <option value="20">20% (Excellent)</option>
-                            <option value="25">25% (Exceptional)</option>
+                            <option value="10">10%</option>
+                            <option value="15" selected>15%</option>
+                            <option value="18">18%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
                         </select>
-                        <span class="select-arrow"></span>
                     </div>
                 </div>
 
-                <!-- Number of People Input Group -->
                 <div class="input-group">
-                    <label for="people-count">Number of People</label>
-                    <div class="input-wrapper">
-                        <span class="input-prefix">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                        </span>
-                        <input 
-                            type="number" 
-                            id="people-count" 
-                            placeholder="1" 
-                            min="1" 
-                            step="1" 
-                            value="1"
-                            required
-                        >
-                    </div>
+                    <label for="number-of-people">Number of People</label>
+                    <input type="number" id="number-of-people" placeholder="1" min="1" value="1" required>
                 </div>
 
-                <!-- Calculate Button -->
-                <button type="submit" id="calculate-btn" class="calculate-btn">
-                    <span>Calculate Split</span>
-                    <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </button>
+                <button type="submit" id="calculate-btn">Calculate</button>
             </form>
-        </section>
 
-        <!-- Results / Error Container -->
-        <section id="result" class="result-container" aria-live="polite">
-            <!-- Results are injected here dynamically by JavaScript -->
-            <div class="result-placeholder">
-                <p>Enter details above and tap Calculate to see results.</p>
+            <!-- Results Container -->
+            <div id="result" class="result-container" aria-live="polite">
+                <!-- Results or errors will be injected here dynamically -->
             </div>
-        </section>
+        </div>
     </main>
-
     <script src="script.js"></script>
 </body>
 </html>
